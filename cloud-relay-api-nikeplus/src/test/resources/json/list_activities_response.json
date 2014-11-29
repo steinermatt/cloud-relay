@@ -1,0 +1,63 @@
+{
+    "data": [
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": " https://api.nike.com/v1/me/sport/activities/1456000000012581358940004583592943423568"
+                }
+            ],
+            "activityId": "1456000000012581358940004583592943423568",
+            "activityType": "RUN",
+            "startTime": "2012-03-05T19:01:12Z",
+            "activityTimeZone": "America/Los_Angeles",
+            "status": "COMPLETE",
+            "deviceType": "IPHONE",
+            "metricSummary": {
+                "calories": "250",
+                "fuel": "4000",
+                "distance": "9.5",
+                "steps": "1000",
+                "duration": "40:00:00.000"
+            },
+            "tags": [
+                {
+                    "tagType": "TERRAIN",
+                    "tagValue": "TRAIL"
+                },
+                {
+                    "tagType": "WEATHER",
+                    "tagValue": "SUNNY"
+                }
+            ],
+            "metrics": []
+        },
+        {
+            "links": [
+                {
+                    "rel": "self",
+                    "href": " https://api.nike.com/v1/me/sport/activities/2d4afde4-2329-4c0c-a218-6adff7b20fd7"
+                }
+            ],
+            "activityId": "2d4afde4-2329-4c0c-a218-6adff7b20fd7",
+            "activityType": "ALL_DAY",
+            "startTime": "2012-03-05T08:00:00Z",
+            "activityTimeZone": "America/Los_Angeles",
+            "status": "IN_PROGRESS",
+            "deviceType": "FUELBAND",
+            "metricSummary": {
+                "calories": "1320",
+                "fuel": "4000",
+                "distance": "10.488167762756348",
+                "steps": "13320",
+                "duration": "0:40:00.000"
+            },
+            "tags": [],
+            "metrics": []
+        }
+    ],
+    "paging": {
+        "next": "/me/sport/activities?startDate=2011-01-01&endDate=2012-03-05&offset=6",
+        "previous": null
+    }
+}
