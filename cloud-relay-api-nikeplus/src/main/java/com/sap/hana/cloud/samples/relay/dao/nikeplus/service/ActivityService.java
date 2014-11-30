@@ -8,6 +8,7 @@ import org.codegist.crest.annotate.QueryParam;
 
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.Activities;
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.Activity;
+import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.ActivityGPSData;
 
 
 @EndPoint("https://api.nike.com")
@@ -38,6 +39,7 @@ public interface ActivityService
 	 * 
 	 * @see https://developer.nike.com/documentation/api-docs/activity-services/list-activities.html
 	 */
+	@Path("/RUNNING")
     Activities listActivities(@QueryParam("access_token") String accessToken,
     						  @QueryParam("count") Integer count,
     						  @QueryParam("offset") Integer offset,
@@ -63,7 +65,7 @@ public interface ActivityService
      * 
      * @param id The ID path parameter in the endpoint URL is the sport activity unique identifier for the desired Activity
      * @param accessToken User's access token (required)
-     * @return
+     * @return The corresponding {@link Activity} object
      * 
      * @see https://developer.nike.com/documentation/api-docs/activity-services/activity-detail.html
      */
@@ -71,6 +73,24 @@ public interface ActivityService
     Activity getActivityDetail(@PathParam("activityId") String id, @QueryParam("access_token") String accessToken);
     
     
+    /**
+     * <p>The <code>/v1/me/sport/activities/{activityId}/gps</code> endpoint provides GPS data for the user's activities, 
+     * specified by its Activity ID. GPS details include coordinates expressed as latitude, longitude and elevation.</p>
+	 * <p>For example, the GPS data for a run enables you to build applications with the ability to map the user's run. 
+	 * The GPS data is provided as an array of key value pairs, as shown below. You'll have access to 10 second intervals, 
+	 * which is how the GPS data is recorded by the user's Nike+ enabled device(s).</p>
+	 * 
+     * <p>Sample Request:</p>
+	 * <pre><code>GET https://api.nike.com/v1/me/sport/activities/{activityId}/gps</code></pre>
+     * 
+     * @param id The ID path parameter in the endpoint URL is the sport activity unique identifier for the desired Activity
+     * @param accessToken User's access token (required)
+     * @return The GPS data of the specified {@link Activity} 
+     * 
+     * @see https://developer.nike.com/documentation/api-docs/activity-services/gps-data.html
+     */
+    @Path("/{activityId}/gps")
+    ActivityGPSData getGPSData(@PathParam("activityId") String id, @QueryParam("access_token") String accessToken);
     
     
 }

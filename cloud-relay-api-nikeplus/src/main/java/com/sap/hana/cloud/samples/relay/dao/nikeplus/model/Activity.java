@@ -36,6 +36,8 @@ public class Activity implements Serializable
 
 	/**
 	 * The type of Activity performed, e.g. RUN, WALK, CYCLE, SESSION, ALL_DAY
+	 * 
+	 * @see https://developer.nike.com/documentation/api-docs/reference/activity-types.html
 	 */
 	@JsonProperty("activityType")
 	private String type;

@@ -2,6 +2,7 @@ package com.sap.hana.cloud.samples.relay.dao.nikeplus.model;
 
 import java.io.Serializable;
 
+import org.codegist.common.lang.ToStringBuilder;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
@@ -48,6 +49,12 @@ public class Tag implements Serializable
 		this.tagValue = tagValue;
 	}
 
-	
+	public String toString() 
+	{
+        return new ToStringBuilder(this)
+                .append("type", tagType)
+                .append("value", tagValue)
+                .toString();
+    }
 	
 }
