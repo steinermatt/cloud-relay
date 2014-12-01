@@ -1,5 +1,6 @@
 package com.sap.hana.cloud.saples.relay.dao.nikeplus.service.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -10,6 +11,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.strategy.Strategy;
+import org.simpleframework.xml.strategy.TreeStrategy;
 
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.Activities;
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.Activity;
@@ -17,6 +22,8 @@ import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.ActivityGPSData;
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.model.AuthData;
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.service.ActivityService;
 import com.sap.hana.cloud.samples.relay.dao.nikeplus.service.AuthService;
+import com.sap.hana.cloud.samples.relay.dao.nikeplus.service.GPXWriter;
+import com.sap.hana.cloud.samples.relay.model.GPXData;
 
 
 /**
@@ -99,10 +106,11 @@ public class TestActivityService
 	}
 	
 	/**
+	 * @throws Exception 
 	 * 
 	 */
 	@Test
-	public void testGetActiviyGPSData() 
+	public void testGetActiviyGPSData() throws Exception 
 	{
 		// get a CRest instance
 		CRest crest = CRest.getInstance();
@@ -122,7 +130,17 @@ public class TestActivityService
 			if (activity.getIsGpsActivity() != null && activity.getIsGpsActivity())
 			{
 				ActivityGPSData gpsData = activityService.getGPSData(activityID, accessToken);
-				System.out.println(gpsData);
+				//System.out.println(gpsData);
+				
+				// convert to GPX data set
+				GPXData gpxData = GPXWriter.convertActivity(activity, gpsData);
+				
+				Strategy strategy = new TreeStrategy("clazz", null); // clazz substitute for class,
+				Serializer serializer = new Persister(strategy);
+				File result = new File("example.gpx");
+
+				serializer.write(gpxData, result);
+				
 			}
 			
 		}
